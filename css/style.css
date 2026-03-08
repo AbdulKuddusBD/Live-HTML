@@ -1,0 +1,674 @@
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #8b5cf6;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --dark: #1f2937;
+    --darker: #111827;
+    --light: #f9fafb;
+    --gray: #6b7280;
+    --border: #e5e7eb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--darker);
+    color: var(--light);
+    overflow: hidden;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* সাইডবার */
+.sidebar {
+    width: 80px;
+    background: var(--darker);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    transition: width 0.3s ease;
+}
+
+.sidebar:hover {
+    width: 240px;
+}
+
+.sidebar:hover .nav-item span,
+.sidebar:hover .logo span,
+.sidebar:hover .theme-toggle span {
+    display: inline-block;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.logo i {
+    font-size: 32px;
+    color: var(--primary);
+}
+
+.logo span {
+    font-size: 18px;
+    font-weight: 700;
+    display: none;
+    white-space: nowrap;
+}
+
+.nav-menu {
+    flex: 1;
+    width: 100%;
+}
+
+.nav-item {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.nav-item i {
+    font-size: 20px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.nav-item span {
+    display: none;
+}
+
+.nav-item:hover {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+}
+
+.nav-item.active {
+    background: var(--primary);
+    color: white;
+}
+
+.sidebar-footer {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    color: var(--gray);
+    white-space: nowrap;
+}
+
+.theme-toggle i {
+    font-size: 18px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.theme-toggle span {
+    display: none;
+}
+
+/* টগল সুইচ */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-left: auto;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--gray);
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* মূল কন্টেন্ট */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* টুলবার */
+.toolbar {
+    height: 60px;
+    background: var(--dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.toolbar-left,
+.toolbar-center,
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tool-btn {
+    background: transparent;
+    border: none;
+    color: var(--gray);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.tool-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.tool-btn i {
+    font-size: 16px;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 15px;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 20px;
+    color: var(--success);
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+/* ওয়ার্কস্পেস */
+.workspace {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* এডিটর সেকশন */
+.editor-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--darker);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 400px;
+}
+
+.editor-header {
+    height: 40px;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.file-tabs {
+    display: flex;
+    gap: 2px;
+    height: 100%;
+}
+
+.file-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 15px;
+    height: 100%;
+    background: transparent;
+    color: var(--gray);
+    font-size: 13px;
+    cursor: pointer;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+}
+
+.file-tab i:first-child {
+    font-size: 14px;
+}
+
+.file-tab.active {
+    background: var(--darker);
+    color: white;
+    border-bottom: 2px solid var(--primary);
+}
+
+.close-tab {
+    opacity: 0;
+    font-size: 12px;
+    transition: opacity 0.3s;
+}
+
+.file-tab:hover .close-tab {
+    opacity: 1;
+}
+
+.close-tab:hover {
+    color: var(--danger);
+}
+
+.editor-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.editor-action {
+    background: transparent;
+    border: none;
+    color: var(--gray);
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.editor-action:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.editor-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.code-editor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background: var(--darker);
+    color: #d4d4d4;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    border: none;
+    outline: none;
+    resize: none;
+    display: none;
+    white-space: pre-wrap;
+    overflow: auto;
+}
+
+.code-editor.active {
+    display: block;
+}
+
+.editor-statusbar {
+    height: 25px;
+    background: var(--dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    gap: 20px;
+    font-size: 12px;
+    color: var(--gray);
+}
+
+/* প্রিভিউ সেকশন */
+.preview-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    min-width: 400px;
+}
+
+.preview-toolbar {
+    height: 40px;
+    background: var(--light);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.preview-tabs {
+    display: flex;
+    gap: 5px;
+}
+
+.preview-tab {
+    background: transparent;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--gray);
+    transition: all 0.3s;
+}
+
+.preview-tab:hover {
+    background: var(--border);
+}
+
+.preview-tab.active {
+    background: var(--primary);
+    color: white;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.preview-action {
+    background: transparent;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--gray);
+    transition: all 0.3s;
+}
+
+.preview-action:hover {
+    background: var(--border);
+    color: var(--dark);
+}
+
+.preview-container {
+    flex: 1;
+    overflow: hidden;
+    background: white;
+    transition: all 0.3s;
+}
+
+.preview-container[data-view="tablet"] {
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.preview-container[data-view="mobile"] {
+    max-width: 375px;
+    margin: 0 auto;
+}
+
+#livePreview {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: white;
+}
+
+/* কনসোল প্যানেল */
+.console-panel {
+    height: 150px;
+    background: var(--darker);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.console-header {
+    height: 30px;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    gap: 8px;
+    color: var(--gray);
+    font-size: 12px;
+}
+
+.clear-console {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.clear-console:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.console-output {
+    flex: 1;
+    padding: 10px 15px;
+    overflow-y: auto;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    color: #d4d4d4;
+}
+
+.console-log {
+    padding: 2px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.console-log:last-child {
+    border-bottom: none;
+}
+
+/* মডাল */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--dark);
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.close-modal {
+    background: transparent;
+    border: none;
+    color: var(--gray);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-body input,
+.modal-body select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: var(--darker);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+.modal-footer {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s;
+}
+
+.modal-btn.cancel {
+    background: transparent;
+    color: var(--gray);
+    border: 1px solid var(--gray);
+}
+
+.modal-btn.save {
+    background: var(--primary);
+    color: white;
+}
+
+.modal-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* রেসপন্সিভ ডিজাইন */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+    }
+    
+    .workspace {
+        flex-direction: column;
+    }
+    
+    .editor-section,
+    .preview-section {
+        min-width: auto;
+    }
+}
+
+/* স্ক্রলবার কাস্টমাইজেশন */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--darker);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
